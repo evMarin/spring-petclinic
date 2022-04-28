@@ -28,7 +28,7 @@ pipeline{
             steps{
                 script{
                     
-                        sh "nohup  java -jar ${WORKSPACE}/build/libs/spring-petclinic-2.6.0.jar --server.port=8081&"
+                        sh "java -jar '${WORKSPACE}/build/libs/spring-petclinic-2.6.0.jar' --server.port=8081"
                     
                 }
             }
