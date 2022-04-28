@@ -31,7 +31,18 @@ pipeline {
         stage("Health Check") {
             steps {
                 script {
-                    sh "curl -k -f --retry 40 --retry-delay 2 --retry-max-time 360 http://localhost:8081 -o /dev/null -w '%{http_code}\n'"
+                    i = 0
+                    while (i != 30) {
+                        try {
+                            i ++
+                            status = sh (script: "sleep 2 && curl -k -s http://localhost:8081 -o /dev/null -w '%{http_code}\n'", returnStdout: true)
+                            println("Status: ${status}")
+                        break
+                        }
+                        catch (ex) {
+                            println(ex)
+                        }
+                    }
                 }
             }
         }
