@@ -11,7 +11,7 @@ pipeline{
         }
         stage("Git checkout"){
             steps{
-                git branch: 'main', url: 'https://github.com/evMarin/spring-petclinic-jenkins.git'
+                git branch: 'main', url: 'https://github.com/evMarin/spring-petclinic.git'
             }
         }
         stage("Build"){
